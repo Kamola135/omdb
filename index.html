@@ -1,80 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
-</head>
-<body class="dark">
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Кинопоиск</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="dark">
     <header class="rounded">
-        <h1>Кинопоиск</h1>
-        <nav class="darckBg">
-            <button class="active">Главная</button>
-            <button>Избранное</button>
-        </nav>
-        <img src="./img/themeChange.svg" class="themeChange darkTheme" alt="themechange icon">
+      <h1>Кинопоиск</h1>
+      <nav class="darckBg">
+        <button class="active">Главная</button>
+        <button>Избранное</button>
+      </nav>
+      <div class="themeChange">
+        <img src="./img/themeChange.svg" alt="themeChange" />
+      </div>
     </header>
-    <form>
-        <div class="search rounded">
-            <input type="text" class="darckBg">
-            <button class="darckBg">Поиск</button>
-        </div>
-    </form>
-    <div class="loader rounded"></div>
-
-    <div class="main rounded">
-        <div class="movieTitle darckBg">
-            <h2>ololo</h2>
-        </div>
-        <div class="movie">
-            <div class="movieImg"></div>
-            <div class="movieInfo">
-                <div class="desc darckBg">
-                    <div class="title">ololo</div>
-                    <div class="value">ololo</div>
-                </div>
-            </div>
-        </div>
-        <div class="similarMovieTitle darckBg">
-            <h2>Похожих фильмов 5</h2>
-        </div>
-        <div class="similarMovies rounded">
-            <div class="similarMovieCard">
-                <div class="save saved"><img src="./img/favBtn.svg" alt=""></div>
-                <div class="similarMovieText">Iron man</div>
-            </div>
-            <div class="similarMovieCard">
-                <div class="save"><img src="./img/favBtn.svg" alt=""></div>
-                <div class="similarMovieText">Iron man</div>
-            </div>
-            <div class="similarMovieCard">
-                <div class="save"><img src="./img/favBtn.svg" alt=""></div>
-                <div class="similarMovieText">Iron man</div>
-            </div>
-             <div class="similarMovieCard">
-                <div class="save"><img src="./img/favBtn.svg" alt=""></div>
-                <div class="similarMovieText">Iron man</div>
-            </div>
-            <div class="similarMovieCard">
-                <div class="save"><img src="./img/favBtn.svg" alt=""></div>
-                <div class="similarMovieText">Iron man</div>
-            </div>
-            <div class="similarMovieCard">
-                <div class="save"><img src="./img/favBtn.svg" alt=""></div>
-                <div class="similarMovieText">Iron man</div>
-            </div>
-            <div class="similarMovieCard">
-                <div class="save"><img src="./img/favBtn.svg" alt=""></div>
-                <div class="similarMovieText">Iron man</div>
-            </div>
-            <div class="similarMovieCard">
-                <div class="save"><img src="./img/favBtn.svg" alt=""></div>
-                <div class="similarMovieText">Iron man</div>
-            </div>
-
-        </div>
+    <div class="search rounded">
+      <input type="text" class="darckBg" id="dd" />
+      <button class="darckBg">Поиск</button>
     </div>
-    <script src="./js/main.js"></script>
-</body>
+    <div class="loader rounded"></div>
+    <div class="main rounded">
+      <div class="movieTitle darckBg">
+        <h2>Iron man</h2>
+      </div>
+      <div class="movie">
+        <div class="movieImg"></div>
+        <div class="movieInfo">
+          <div class="desc darckBg">
+            <div class="title">imdbRating</div>
+            <div class="value">N/A</div>
+          </div>
+          <div class="desc darckBg">
+            <div class="title">imdbRating</div>
+            <div class="value">N/A</div>
+          </div>
+          <div class="desc darckBg">
+            <div class="title">imdbRating</div>
+            <div class="value">N/A</div>
+          </div>
+          <div class="desc darckBg">
+            <div class="title">imdbRating</div>
+            <div class="value">N/A</div>
+          </div>
+          <div class="desc darckBg">
+            <div class="title">imdbRating</div>
+            <div class="value">N/A</div>
+          </div>
+          <div class="desc darckBg">
+            <div class="title">imdbRating</div>
+            <div class="value">N/A</div>
+          </div>
+          <div class="desc darckBg">
+            <div class="title">imdbRating</div>
+            <div class="value">N/A</div>
+          </div>
+          <div class="desc darckBg">
+            <div class="title">imdbRating</div>
+            <div class="value">N/A</div>
+          </div>
+          <div class="desc darckBg">
+            <div class="title">imdbRating</div>
+            <div class="value">N/A</div>
+          </div>
+          <div class="desc darckBg">
+            <div class="title">imdbRating</div>
+            <div class="value">N/A</div>
+          </div>
+        </div>
+      </div>
+      <div class="similarMovieTitle darckBg">
+        <h2>Похожих фильмов: 6</h2>
+      </div>
+      <div class="similarMovies rounded">
+        <div class="similarMovieCard">
+          <div class="save saved">
+            <img src="./img//favBtn.svg" alt="fav icon" />
+          </div>
+          <div class="similarMovieText">Iron sky</div>
+        </div>
+        <div class="similarMovieCard">
+          <div class="save"><img src="./img//favBtn.svg" alt="fav icon" /></div>
+          <div class="similarMovieText">Iron sky</div>
+        </div>
+        <div class="similarMovieCard">
+          <div class="save"><img src="./img//favBtn.svg" alt="fav icon" /></div>
+          <div class="similarMovieText">Iron sky</div>
+        </div>
+        <div class="similarMovieCard">
+          <div class="save"><img src="./img//favBtn.svg" alt="fav icon" /></div>
+          <div class="similarMovieText">Iron sky</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
 </html>
