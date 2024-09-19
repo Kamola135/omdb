@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кинопоиск -- Избранное</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header class="rounded">
+        <h1>Кинопоиск</h1>
+        <nav class="darckBg">
+          <a href="./">Главная</a>
+          <a class="active" href="./favorites.html">Избранное</a>
+        </nav>
+        <div class="themeChange">
+            <img src="./img/themeChange.svg" class="themeChange" alt="themeChange" />
+          </div>
+      </header>
+
+      <div class="similarMovieTitle darckBg">
+        <h2>Фильмы в избранном : 0</h2>
+      </div>
+      <div class="similarMovies rounded">
+
+      </div>
+      <script src="./main.js"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            showFavs();
+        });
+      </script>
+</body>
+</html>

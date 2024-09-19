@@ -1,31 +1,42 @@
 let changeThemeBtn = document.querySelector(".themeChange");
 let body = document.querySelector("body");
 
-changeThemeBtn.addEventListener("click", changeTheme);
+if (changeThemeBtn) {
+    changeThemeBtn.addEventListener("click", changeTheme);
+}
 
 if (localStorage.getItem("theme") === "dark") {
-    changeThemeBtn.classList.add("darkTheme");
+    if (changeThemeBtn) {
+        changeThemeBtn.classList.add("darkTheme");
+    }
     body.classList.add("dark");
 }
 
 function changeTheme() {
     if (localStorage.getItem("theme") === "dark") {
-        changeThemeBtn.classList.toggle("darkTheme");
+        if (changeThemeBtn) {
+            changeThemeBtn.classList.toggle("darkTheme");
+        }
         body.classList.toggle("dark");
         localStorage.setItem("theme", "white");
     } else {
-        changeThemeBtn.classList.toggle("darkTheme");
+        if (changeThemeBtn) {
+            changeThemeBtn.classList.toggle("darkTheme");
+        }
         body.classList.toggle("dark");
         localStorage.setItem("theme", "dark");
     }
 }
 
 let searchBtn = document.querySelector(".search button");
-searchBtn.addEventListener("click", searchMovie);
+
+if (searchBtn) {
+    searchBtn.addEventListener("click", searchMovie);
+}
 
 let loader = document.querySelector('.loader');
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         event.preventDefault();
         searchMovie();
@@ -58,7 +69,7 @@ async function searchMovie() {
         if (response.Poster !== "N/A") {
             movieImg.style.backgroundImage = `url(${response.Poster})`;
         } else {
-            movieImg.style.backgroundImage = ''; 
+            movieImg.style.backgroundImage = '';
         }
 
         let detailsList = ["Language", "Actors", "Country", "Genre", "Released", "Runtime", "imdbRating"];
@@ -91,7 +102,7 @@ async function sendRequest(url, method, data) {
                 body: JSON.stringify(data)
             });
 
-            return await response.json(); 
+            return await response.json();
         } else if (method == "GET") {
             url = url + "?" + new URLSearchParams(data);
             let response = await fetch(url, {
@@ -113,7 +124,7 @@ async function searchSimilarMovies(title) {
         "apikey": "afaaaac8",
         "s": title
     });
-    
+
     if (similarMovies.Response == "False") {
         document.querySelector(".similarMovieTitle h2").style.display = "none";
         document.querySelector(".similarMovies").style.display = "none";
@@ -129,19 +140,22 @@ function showSimilarMovies(movies) {
     let similarMoviesTitle = document.querySelector(".similarMovieTitle h2");
     similarMoviesContainer.innerHTML = "";
 
-    movies.forEach(movie => {
+    movies.forEach((movie) => {
+        const index = favs.findIndex(obj => obj.imdbID === movie.imdbID);
+        let favCheck = index < 0 ? "" : "active";
+
         similarMoviesContainer.innerHTML += `<div class="similarMovieCard" style="background-image:url(${movie.Poster})">
-        <div class="favStar" data-title="${movie.Title}" data-poster="${movie.Poster}" data-ImdbID="${movie.imdbID}"></div>
+        <div class="favStar ${favCheck}" data-title="${movie.Title}" data-poster="${movie.Poster}" data-ImdbID="${movie.imdbID}"></div>
         <div class="similarMovieText">${movie.Title}</div>
         </div>`;
     });
 
     similarMoviesContainer.style.display = "grid";
     similarMoviesTitle.style.display = "block";
-    activateFacBtns();
+    activateFavBtns();
 }
 
-function activateFacBtns() {
+function activateFavBtns() {
     document.querySelectorAll(".favStar").forEach(elem => {
         elem.addEventListener("click", addToFav);
     });
@@ -149,25 +163,26 @@ function activateFacBtns() {
 
 function addToFav(event) {
     let favBtn = event.target;
+
     let title = favBtn.getAttribute("data-title");
     let poster = favBtn.getAttribute("data-poster");
     let imdbID = favBtn.getAttribute("data-imdbID");
 
-    let favs = JSON.parse(localStorage.getItem("favs")) || [];
-    
-  
-    let movieExists = favs.some(fav => fav.imdbID === imdbID);
-
-    if (!movieExists) {
-        favs.push({ title, poster, imdbID });
+    const index = favs.findIndex(obj => obj.imdbID === imdbID);
+    if (index < 0) {
+        let fav = { title, poster, imdbID };
+        favs.push(fav);
         localStorage.setItem("favs", JSON.stringify(favs));
-        alert(`${title} добавлен в избранное!`);
+        favBtn.classList.add('active');
     } else {
-        alert(`${title} уже в избранном!`);
+        favs.splice(index, 1);
+        localStorage.setItem("favs", JSON.stringify(favs));
+        favBtn.classList.remove('active');
     }
 }
 
 let favs = localStorage.getItem("favs");
+
 if (!favs) {
     favs = [];
     localStorage.setItem("favs", JSON.stringify(favs));
@@ -175,128 +190,21 @@ if (!favs) {
     favs = JSON.parse(favs);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function showFavs() {
+    let similarMoviesContainer = document.querySelector(".similarMovies");
+    let similarMoviesTitle = document.querySelector(".similarMovieTitle h2");
+    similarMoviesContainer.innerHTML = "";
+    similarMoviesTitle.innerHTML = `Фильмы в избранном: ${favs.length}`;
+
+    favs.forEach((movie) => {
+        let favCheck = "active";
+        similarMoviesContainer.innerHTML += `<div class="similarMovieCard" style="background-image:url(${movie.poster})">
+        <div class="favStar ${favCheck}" data-title="${movie.title}" data-poster="${movie.poster}" data-ImdbID="${movie.imdbID}"></div>
+        <div class="similarMovieText">${movie.title}</div>
+        </div>`;
+    });
+
+    similarMoviesContainer.style.display = "grid";
+    similarMoviesTitle.style.display = "block";
+    activateFavBtns();
+}
